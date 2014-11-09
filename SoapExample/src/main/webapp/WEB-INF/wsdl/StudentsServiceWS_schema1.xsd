@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://services.soap.arqsoft.fiuba.com/" xmlns:tns="http://services.soap.arqsoft.fiuba.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="StudentNotFoundException" type="tns:StudentNotFoundException"/>
+
+  <xs:element name="findStudentByID" type="tns:findStudentByID"/>
+
+  <xs:element name="findStudentByIDResponse" type="tns:findStudentByIDResponse"/>
+
+  <xs:element name="getAllStudents" type="tns:getAllStudents"/>
+
+  <xs:element name="getAllStudentsResponse" type="tns:getAllStudentsResponse"/>
+
+  <xs:complexType name="getAllStudents">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getAllStudentsResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:student" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="student">
+    <xs:sequence>
+      <xs:element name="courses" type="tns:course" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="studentID" type="xs:string" minOccurs="0"/>
+      <xs:element name="subject" type="tns:subject" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="course">
+    <xs:sequence>
+      <xs:element name="courseID" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="subject">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="subjectCode" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findStudentByID">
+    <xs:sequence>
+      <xs:element name="studentID" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findStudentByIDResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:student" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="StudentNotFoundException">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

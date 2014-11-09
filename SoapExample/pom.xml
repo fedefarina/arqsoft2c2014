@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.fiuba.arqsoft.soap</groupId>
+    <artifactId>ArqSoftSoapExample</artifactId>
+    <packaging>war</packaging>
+    <version>1.0</version>
+    <name>ArqSoftSoapExample Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>2.1.7</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>web services</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>1.10</version>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>wsgen</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sei>com.fiuba.arqsoft.soap.services.ws.StudentsWS</sei>
+                    <genWsdl>true</genWsdl>
+                    <keep>true</keep>
+                    <resourceDestDir>${basedir}/src/main/webapp/WEB-INF/wsdl</resourceDestDir>
+                    <sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
