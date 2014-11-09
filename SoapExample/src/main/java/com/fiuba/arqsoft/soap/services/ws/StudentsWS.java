@@ -1,5 +1,6 @@
 package com.fiuba.arqsoft.soap.services.ws;
 
+import com.fiuba.arqsoft.soap.dao.Repository;
 import com.fiuba.arqsoft.soap.domain.Student;
 import com.fiuba.arqsoft.soap.exceptions.StudentNotFoundException;
 import com.fiuba.arqsoft.soap.services.StudentsManagement;
@@ -7,7 +8,6 @@ import com.fiuba.arqsoft.soap.services.StudentsManagement;
 import javax.jws.WebService;
 import javax.xml.ws.BindingType;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -20,29 +20,30 @@ import java.util.Map;
 @BindingType(value = "http://java.sun.com/xml/ns/jaxws/2003/05/soap/bindings/HTTP/")
 public class StudentsWS implements StudentsManagement {
 
-
-    private static Map<String, Student> students = new HashMap<String, Student>() {
-        {
-            put("90177", new Student("90177", "Federico", "Farina"));
-        }
-
-        {
-            put("89009", new Student("89009", "Nicolas", "Icardi"));
-        }
-    };
-
+    Map<String, Student> students = Repository.getAllStudents();
 
     static {
         System.setProperty("com.sun.xml.ws.fault.SOAPFaultBuilder.disableCaptureStackTrace", "false");
     }
 
-    @Override
     public Student findStudentByID(String id) throws StudentNotFoundException {
-        return null;
+        Student student = students.get(id);
+        if (student != null)
+            return student;
+        throw new StudentNotFoundException();
     }
 
 
-    @Override
+    public Student removeStudentByID(String id) throws StudentNotFoundException {
+        Student student = students.get(id);
+        if (student != null) {
+            students.remove(id);
+            return student;
+        }
+        throw new StudentNotFoundException();
+    }
+
+
     public Collection<Student> getAllStudents() {
         return students.values();
     }

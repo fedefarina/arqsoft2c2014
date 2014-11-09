@@ -20,4 +20,6 @@ public interface StudentsManagement {
 
     public java.util.Collection<Student> getAllStudents();
 
+    public Student removeStudentByID(@WebParam(name = "studentID") String id) throws StudentNotFoundException;
+
 }

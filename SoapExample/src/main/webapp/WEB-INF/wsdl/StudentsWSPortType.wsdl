@@ -3,7 +3,7 @@
 <definitions targetNamespace="http://services.soap.arqsoft.fiuba.com/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://services.soap.arqsoft.fiuba.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <types>
     <xsd:schema>
-      <xsd:import namespace="http://services.soap.arqsoft.fiuba.com/" schemaLocation="StudentsServiceWS_schema1.xsd"/>
+      <xsd:import namespace="http://services.soap.arqsoft.fiuba.com/" schemaLocation="StudentsWSPortType_schema1.xsd"/>
     </xsd:schema>
   </types>
   <message name="findStudentByID">
@@ -15,16 +15,27 @@
   <message name="StudentNotFoundException">
     <part name="fault" element="tns:StudentNotFoundException"/>
   </message>
+  <message name="removeStudentByID">
+    <part name="parameters" element="tns:removeStudentByID"/>
+  </message>
+  <message name="removeStudentByIDResponse">
+    <part name="parameters" element="tns:removeStudentByIDResponse"/>
+  </message>
   <message name="getAllStudents">
     <part name="parameters" element="tns:getAllStudents"/>
   </message>
   <message name="getAllStudentsResponse">
     <part name="parameters" element="tns:getAllStudentsResponse"/>
   </message>
-  <portType name="StudentsServiceWS">
+  <portType name="StudentsWS">
     <operation name="findStudentByID">
       <input message="tns:findStudentByID"/>
       <output message="tns:findStudentByIDResponse"/>
+      <fault message="tns:StudentNotFoundException" name="StudentNotFoundException"/>
+    </operation>
+    <operation name="removeStudentByID">
+      <input message="tns:removeStudentByID"/>
+      <output message="tns:removeStudentByIDResponse"/>
       <fault message="tns:StudentNotFoundException" name="StudentNotFoundException"/>
     </operation>
     <operation name="getAllStudents">

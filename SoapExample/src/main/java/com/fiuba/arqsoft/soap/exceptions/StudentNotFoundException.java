@@ -6,6 +6,6 @@ package com.fiuba.arqsoft.soap.exceptions;
 public class StudentNotFoundException extends Exception {
     @Override
     public String getMessage() {
-        return "No alumnos found with the given criteria.";
+        return "No students found with the given criteria.";
     }
 }

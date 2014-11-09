@@ -11,13 +11,19 @@
 
   <xs:element name="getAllStudentsResponse" type="tns:getAllStudentsResponse"/>
 
-  <xs:complexType name="getAllStudents">
-    <xs:sequence/>
+  <xs:element name="removeStudentByID" type="tns:removeStudentByID"/>
+
+  <xs:element name="removeStudentByIDResponse" type="tns:removeStudentByIDResponse"/>
+
+  <xs:complexType name="removeStudentByID">
+    <xs:sequence>
+      <xs:element name="studentID" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="getAllStudentsResponse">
+  <xs:complexType name="removeStudentByIDResponse">
     <xs:sequence>
-      <xs:element name="return" type="tns:student" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="return" type="tns:student" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -44,6 +50,22 @@
     </xs:sequence>
   </xs:complexType>
 
+  <xs:complexType name="StudentNotFoundException">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getAllStudents">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getAllStudentsResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:student" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
   <xs:complexType name="findStudentByID">
     <xs:sequence>
       <xs:element name="studentID" type="xs:string" minOccurs="0"/>
@@ -53,12 +75,6 @@
   <xs:complexType name="findStudentByIDResponse">
     <xs:sequence>
       <xs:element name="return" type="tns:student" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="StudentNotFoundException">
-    <xs:sequence>
-      <xs:element name="message" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

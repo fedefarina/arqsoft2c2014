@@ -7,6 +7,6 @@ public class SubjectNotFoundException extends Exception{
 
     @Override
     public String getMessage() {
-        return "No materias found with the given criteria.";
+        return "No subjects found with the given criteria.";
     }
 }
