@@ -2,6 +2,7 @@ package com.fiuba.arqsoft.soap.services;
 
 
 import com.fiuba.arqsoft.soap.domain.Student;
+import com.fiuba.arqsoft.soap.exceptions.StudentAlreadyExistException;
 import com.fiuba.arqsoft.soap.exceptions.StudentNotFoundException;
 
 import javax.jws.WebParam;
@@ -21,5 +22,9 @@ public interface StudentsManagement {
     public java.util.Collection<Student> getAllStudents();
 
     public Student removeStudentByID(@WebParam(name = "studentID") String id) throws StudentNotFoundException;
+
+    public Student addStudent(@WebParam(name = "studentID") String id,
+                              @WebParam(name = "firstName") String firstName,
+                              @WebParam(name = "lastName") String lastName) throws StudentAlreadyExistException;
 
 }

@@ -28,6 +28,18 @@
         <soap12:fault name="StudentNotFoundException" use="literal"/>
       </fault>
     </operation>
+    <operation name="addStudent">
+      <soap12:operation soapAction=""/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+      <fault name="StudentAlreadyExistException">
+        <soap12:fault name="StudentAlreadyExistException" use="literal"/>
+      </fault>
+    </operation>
     <operation name="getAllStudents">
       <soap12:operation soapAction=""/>
       <input>

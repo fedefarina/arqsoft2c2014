@@ -2,6 +2,7 @@ package com.fiuba.arqsoft.soap.services.ws;
 
 import com.fiuba.arqsoft.soap.dao.Repository;
 import com.fiuba.arqsoft.soap.domain.Student;
+import com.fiuba.arqsoft.soap.exceptions.StudentAlreadyExistException;
 import com.fiuba.arqsoft.soap.exceptions.StudentNotFoundException;
 import com.fiuba.arqsoft.soap.services.StudentsManagement;
 
@@ -43,6 +44,16 @@ public class StudentsWS implements StudentsManagement {
         throw new StudentNotFoundException();
     }
 
+    public Student addStudent(String id, String firstName, String lastName) throws StudentAlreadyExistException {
+        Student student = students.get(id);
+        if (student != null) {
+            throw new StudentAlreadyExistException();
+        }
+
+        student = new Student(id, firstName, lastName);
+        students.put(id, student);
+        return student;
+    }
 
     public Collection<Student> getAllStudents() {
         return students.values();
