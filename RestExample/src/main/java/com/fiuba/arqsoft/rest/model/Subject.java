@@ -1,32 +1,37 @@
 package com.fiuba.arqsoft.rest.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.hateoas.ResourceSupport;
+
 /**
  * Created by Fede on 11/8/14.
  */
 
-public class Subject {
+public class Subject extends ResourceSupport {
 
-    private String mSubjectCode;
-    private String mName;
+    private String subjectCode;
+    private String name;
 
-    public Subject(String subjectCode, String name) {
-        mSubjectCode = subjectCode;
-        mName = name;
+
+    public Subject(@JsonProperty("subjectCode") String aSubjectCode,
+                   @JsonProperty("name") String aName) {
+        subjectCode = aSubjectCode;
+        name = aName;
     }
 
     public String getSubjectCode() {
-        return mSubjectCode;
+        return subjectCode;
     }
 
     public void setSubjectCode(String code) {
-        this.mSubjectCode = code;
+        this.subjectCode = code;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        this.mName = name;
+        this.name = name;
     }
 }

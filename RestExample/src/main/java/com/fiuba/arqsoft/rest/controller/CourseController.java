@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
@@ -37,6 +39,7 @@ public class CourseController {
         Course course = courseDAO.getById(courseID);
         course.removeLinks();
         course.add(linkTo(methodOn(CourseController.class).getByID(courseID)).withSelfRel());
+        course.add(linkTo(methodOn(SubjectController.class).getByID(course.getSubjectID())).withRel("subject"));
         return new ResponseEntity<>(course, HttpStatus.OK);
     }
 
@@ -46,9 +49,15 @@ public class CourseController {
     public ResponseEntity<Courses> getAllCourses() {
         Courses courses = new Courses(courseDAO.getAll());
         for (Course course : courses.getCourses()) {
-            String studentID = course.getCourseID();
+            String courseID = course.getCourseID();
+            List<Student> students = course.getStudents();
+            for (Student student : students) {
+                student.removeLinks();
+                student.add(linkTo(methodOn(StudentsController.class).getByID(student.getStudentID())).withSelfRel());
+            }
             course.removeLinks();
-            course.add(linkTo(methodOn(CourseController.class).getByID(studentID)).withSelfRel());
+            course.add(linkTo(methodOn(SubjectController.class).getByID(course.getSubjectID())).withRel("subject"));
+            course.add(linkTo(methodOn(CourseController.class).getByID(courseID)).withSelfRel());
         }
         courses.add(linkTo(methodOn(CourseController.class).getAllCourses()).withSelfRel());
         return new ResponseEntity<>(courses, HttpStatus.OK);
@@ -63,9 +72,9 @@ public class CourseController {
             String studentID = student.getStudentID();
             student.removeLinks();
             student.add(linkTo(methodOn(StudentsController.class).getByID(studentID)).withSelfRel());
-            student.add(linkTo(methodOn(CourseController.class).getByID(courseID)).withRel("course"));
         }
         students.add(linkTo(methodOn(CourseController.class).getStudentsForCourse(courseID)).withSelfRel());
+        students.add(linkTo(methodOn(CourseController.class).getByID(courseID)).withRel("course"));
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
 

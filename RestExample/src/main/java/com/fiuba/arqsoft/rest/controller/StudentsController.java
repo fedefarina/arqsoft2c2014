@@ -29,6 +29,7 @@ public class StudentsController {
         Students students = new Students(studentsDao.getAll());
         for (Student student : students.getStudents()) {
             String studentID = student.getStudentID();
+            student.removeLinks();
             student.add(linkTo(methodOn(StudentsController.class).getByID(studentID)).withSelfRel());
         }
         students.add(linkTo(methodOn(StudentsController.class).getAllStudents()).withSelfRel());
@@ -49,7 +50,6 @@ public class StudentsController {
     public HttpEntity<Student> deleteByID(@PathVariable("studentID") String studentID) {
         Student student = studentsDao.delete(studentID);
         student.removeLinks();
-        student.add(linkTo(methodOn(StudentsController.class).getByID(studentID)).withSelfRel());
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 

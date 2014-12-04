@@ -21,9 +21,9 @@ public class Repository {
     private static Student ezequiel = new Student("87565", "Ezequiel", "Garcia");
 
     //Subjects
-    static Subject subject1 = new Subject("75.31", "Teoría de Lenguaje");
-    static Subject subject2 = new Subject("75.32", "Arquitectura de Software");
-    static Subject subject3 = new Subject("75.33", "Otra materia");
+    static Subject subject1 = new Subject("7531", "Teoría de Lenguaje");
+    static Subject subject2 = new Subject("7532", "Arquitectura de Software");
+    static Subject subject3 = new Subject("7533", "Otra materia");
 
 
     static Map<String, Student> students = new HashMap<>();
@@ -46,9 +46,9 @@ public class Repository {
         students2.add(ezequiel);
 
         //Courses
-        Course firstCourse = new Course("1", "75.31", "2014", "2", students);
-        Course secondCourse = new Course("2", "75.32", "2014", "2", students2);
-        Course thirdCourse = new Course("3", "75.33", "2014", "1", students2);
+        Course firstCourse = new Course("1", "7531", "2014", "2", students);
+        Course secondCourse = new Course("2", "7532", "2014", "2", students2);
+        Course thirdCourse = new Course("3", "7533", "2014", "1", students2);
 
 
         courses.put(firstCourse.getCourseID(), firstCourse);
