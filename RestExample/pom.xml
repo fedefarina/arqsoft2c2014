@@ -13,6 +13,10 @@
         <version>1.1.9.RELEASE</version>
     </parent>
 
+    <properties>
+        <compileSource>1.7</compileSource>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -43,15 +47,20 @@
         </dependency>
     </dependencies>
 
-    <properties>
-        <start-class>hello.Application</start-class>
-    </properties>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${compileSource}</source>
+                    <target>${compileSource}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
             </plugin>
         </plugins>
     </build>
