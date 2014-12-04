@@ -12,7 +12,7 @@ public class Students extends ResourceSupport {
 
     private Collection<Student> students;
 
-    public Students(@JsonProperty("studens") Collection<Student> theStudents) {
+    public Students(@JsonProperty("students") Collection<Student> theStudents) {
         students = theStudents;
     }
 

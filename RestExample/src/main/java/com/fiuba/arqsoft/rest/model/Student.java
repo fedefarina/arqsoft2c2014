@@ -12,7 +12,6 @@ public class Student extends ResourceSupport {
     private String studentID;
     private String name;
     private String lastName;
-    //private List<Course> courseList;
 
     public Student(@JsonProperty("studentID") String anID,
                    @JsonProperty("name") String aName,
@@ -50,14 +49,6 @@ public class Student extends ResourceSupport {
         this.lastName = lastName;
     }
 
-    /* public List<Course> getCourseList() {
-         return courseList;
-     }
-
-     public void setCourseList(List<Course> courseList) {
-         this.courseList = courseList;
-     }
- */
     @Override
     public String toString() {
         return "Student{" +

@@ -19,4 +19,9 @@ public class CourseDAO {
         LOG.trace("Get all courses.");
         return Repository.getAllCourses().values();
     }
+
+    public Course getById(String courseID) {
+        LOG.trace("Get course by ID {}", courseID);
+        return Repository.getAllCourses().get(courseID);
+    }
 }
