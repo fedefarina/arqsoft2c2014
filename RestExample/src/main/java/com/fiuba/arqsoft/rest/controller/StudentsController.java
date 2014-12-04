@@ -36,12 +36,20 @@ public class StudentsController {
     @ResponseBody
     public HttpEntity<Student> getByID(@PathVariable("studentID") String studentID) {
         Student student = studentsDao.getById(studentID);
+        student.removeLinks();
         student.add(linkTo(methodOn(StudentsController.class).getByID(studentID)).withSelfRel());
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
 
-
+    @RequestMapping(value = "/students/{studentID}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public HttpEntity<Student> deleteByID(@PathVariable("studentID") String studentID) {
+        Student student = studentsDao.delete(studentID);
+        student.removeLinks();
+        student.add(linkTo(methodOn(StudentsController.class).getByID(studentID)).withSelfRel());
+        return new ResponseEntity<>(student, HttpStatus.OK);
+    }
 
 
  /*
@@ -53,7 +61,7 @@ public class StudentsController {
 
     @RequestMapping(value = "/student/{studentID}", method = RequestMethod.GET)
     @ResponseBody
-    public HttpEntity<Student> getByID(@PathVariable String studentID) {
+    public HttpEntity<Student> deleteByID(@PathVariable String studentID) {
         Student student=studentsDao.getById(studentID);
         student.add(linkTo(student).withSelfRel());
         return new ResponseEntity<>(student, HttpStatus.OK);

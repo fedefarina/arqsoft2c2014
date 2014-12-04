@@ -31,8 +31,15 @@ public class Repository {
     static Subject subject3 = new Subject("75.33", "Otra materia");
 
 
-    public static Map<String, Student> getAllStudents() {
-        Map<String, Student> students = new HashMap<>();
+    static Map<String, Student> students = new HashMap<>();
+    static Map<String, Course> courses = new HashMap<>();
+    static Map<String, Subject> subjects = new HashMap<>();
+
+    public static void initRepository() {
+        students.put(federico.getStudentID(), federico);
+        students.put(nicolas.getStudentID(), nicolas);
+        students.put(guillermo.getStudentID(), guillermo);
+        students.put(ezequiel.getStudentID(), ezequiel);
 
         List<Course> list1 = new ArrayList<>();
         list1.add(firstCourse);
@@ -41,32 +48,31 @@ public class Repository {
         List<Course> list2 = new ArrayList<>();
         list2.add(thirdCourse);
 
-        /*federico.setCourseList(list1);
+                /*federico.setCourseList(list1);
         nicolas.setCourseList(list1);
         guillermo.setCourseList(list2);
         ezequiel.setCourseList(list2);
 */
-        students.put(federico.getStudentID(), federico);
-        students.put(nicolas.getStudentID(), nicolas);
-        students.put(guillermo.getStudentID(), guillermo);
-        students.put(ezequiel.getStudentID(), ezequiel);
+
+        courses.put(firstCourse.getCourseID(), firstCourse);
+        courses.put(secondCourse.getCourseID(), secondCourse);
+        courses.put(thirdCourse.getCourseID(), thirdCourse);
+        subjects.put(subject1.getSubjectCode(), subject1);
+        subjects.put(subject2.getSubjectCode(), subject2);
+        subjects.put(subject3.getSubjectCode(), subject3);
+    }
+
+
+    public static Map<String, Student> getAllStudents() {
         return students;
     }
 
 
     public static Map<String, Course> getAllCourses() {
-        Map<String, Course> courses = new HashMap<>();
-        courses.put(firstCourse.getCourseID(), firstCourse);
-        courses.put(secondCourse.getCourseID(), secondCourse);
-        courses.put(thirdCourse.getCourseID(), thirdCourse);
         return courses;
     }
 
     public static Map<String, Subject> getAllSubjects() {
-        Map<String, Subject> subjects = new HashMap<>();
-        subjects.put(subject1.getSubjectCode(), subject1);
-        subjects.put(subject2.getSubjectCode(), subject2);
-        subjects.put(subject3.getSubjectCode(), subject3);
         return subjects;
     }
 }
