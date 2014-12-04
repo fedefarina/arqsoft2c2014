@@ -2,6 +2,7 @@ package com.fiuba.arqsoft.rest.controller;
 
 import com.fiuba.arqsoft.rest.dao.StudentsDao;
 import com.fiuba.arqsoft.rest.model.Student;
+import com.fiuba.arqsoft.rest.model.Students;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,19 @@ public class StudentsController {
         return new ResponseEntity<>(greeting, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/students/", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<Students> getAllStudents() {
+        Students students=new Students(studentsDao.getAll());
+        for (Student student : students.getStudents()) {
+            String studentID = student.getStudentID();
+            student.add(linkTo(methodOn(StudentsController.class).getByID(studentID)).withSelfRel());
+        }
+        students.add(linkTo(methodOn(StudentsController.class).getAllStudents()).withSelfRel());
+        return new ResponseEntity<>(students, HttpStatus.OK);
+    }
+
+
     @RequestMapping(value = "/students/{studentID}", method = RequestMethod.GET)
     @ResponseBody
     public HttpEntity<Student> getByID(@PathVariable("studentID") String studentID) {
@@ -52,7 +66,7 @@ public class StudentsController {
     }
 
 
-    @RequestMapping(value = "/students/", method = RequestMethod.POST,consumes="application/json")
+    @RequestMapping(value = "/students/", method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
     public HttpEntity<Student> addStudent(@RequestBody Student student) {
         studentsDao.addStudent(student);
