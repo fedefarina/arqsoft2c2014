@@ -20,11 +20,6 @@ public class Repository {
     private static Student guillermo = new Student("85678", "Guillermo", "Rugilo");
     private static Student ezequiel = new Student("87565", "Ezequiel", "Garcia");
 
-    //Courses
-    private static Course firstCourse = new Course("1", "75.31", "2014", "2");
-    private static Course secondCourse = new Course("2", "75.32", "2014", "2");
-    private static Course thirdCourse = new Course("3", "75.33", "2014", "1");
-
     //Subjects
     static Subject subject1 = new Subject("75.31", "Teoría de Lenguaje");
     static Subject subject2 = new Subject("75.32", "Arquitectura de Software");
@@ -41,18 +36,20 @@ public class Repository {
         students.put(guillermo.getStudentID(), guillermo);
         students.put(ezequiel.getStudentID(), ezequiel);
 
-        List<Course> list1 = new ArrayList<>();
-        list1.add(firstCourse);
-        list1.add(secondCourse);
 
-        List<Course> list2 = new ArrayList<>();
-        list2.add(thirdCourse);
+        List<Student> students = new ArrayList<>();
+        students.add(federico);
+        students.add(nicolas);
 
-                /*federico.setCourseList(list1);
-        nicolas.setCourseList(list1);
-        guillermo.setCourseList(list2);
-        ezequiel.setCourseList(list2);
-*/
+        List<Student> students2 = new ArrayList<>();
+        students2.add(guillermo);
+        students2.add(ezequiel);
+
+        //Courses
+        Course firstCourse = new Course("1", "75.31", "2014", "2", students);
+        Course secondCourse = new Course("2", "75.32", "2014", "2", students2);
+        Course thirdCourse = new Course("3", "75.33", "2014", "1", students2);
+
 
         courses.put(firstCourse.getCourseID(), firstCourse);
         courses.put(secondCourse.getCourseID(), secondCourse);
