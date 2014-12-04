@@ -55,12 +55,10 @@ public class StudentsDao {
     }*/
 
 
-    public String addStudent(Student student) {
+    public Student addStudent(Student student) {
         LOG.trace("Add student: " + student);
         Map<String, Student> students = Repository.getAllStudents();
-        String newStudent = student.getStudentID();
-        students.put(newStudent, student);
-        return newStudent;
+        return student;
     }
 
 

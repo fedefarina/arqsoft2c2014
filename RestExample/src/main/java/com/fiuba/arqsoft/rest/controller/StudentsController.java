@@ -52,6 +52,17 @@ public class StudentsController {
     }
 
 
+    @RequestMapping(value = "/students/", method = RequestMethod.POST,consumes="application/json")
+    @ResponseBody
+    public HttpEntity<Student> addStudent(@RequestBody Student student) {
+        studentsDao.addStudent(student);
+        student.removeLinks();
+        student.add(linkTo(methodOn(StudentsController.class).getByID(student.getStudentID())).withSelfRel());
+        return new ResponseEntity<>(student, HttpStatus.OK);
+    }
+
+
+
  /*
        private StudentsDao studentsDao;
    @Autowired
