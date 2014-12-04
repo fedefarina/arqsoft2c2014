@@ -2,6 +2,7 @@ package com.fiuba.arqsoft.rest.controller;
 
 import com.fiuba.arqsoft.rest.dao.SubjectDAO;
 import com.fiuba.arqsoft.rest.model.Subject;
+import com.fiuba.arqsoft.rest.model.Subjects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,19 @@ public class SubjectController {
         this.subjectDAO = subjectDAO;
     }
 
+
+    @RequestMapping(value = "/subjects/", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<Subjects> getAllSubjects() {
+        Subjects subjects = new Subjects(subjectDAO.getAll());
+        for (Subject subject : subjects.getSubjects()) {
+            String subjectID = subject.getSubjectCode();
+            subject.removeLinks();
+            subject.add(linkTo(methodOn(SubjectController.class).getByID(subjectID)).withSelfRel());
+        }
+        subjects.add(linkTo(methodOn(SubjectController.class).getAllSubjects()).withSelfRel());
+        return new ResponseEntity<>(subjects, HttpStatus.OK);
+    }
 
     @RequestMapping(value = "/subjects/{subjectID}", method = RequestMethod.GET)
     @ResponseBody

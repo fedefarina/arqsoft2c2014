@@ -4,6 +4,8 @@ import com.fiuba.arqsoft.rest.model.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collection;
+
 /**
  * Created by Fede on 12/4/14.
  */
@@ -11,6 +13,11 @@ import org.slf4j.LoggerFactory;
 public class SubjectDAO {
 
     private static final Logger LOG = LoggerFactory.getLogger(SubjectDAO.class);
+
+    public Collection<Subject> getAll() {
+        LOG.trace("Get all subjects.");
+        return Repository.getAllSubjects().values();
+    }
 
     public Subject getById(String subjectID) {
         LOG.trace("Get subject with ID {}", subjectID);
