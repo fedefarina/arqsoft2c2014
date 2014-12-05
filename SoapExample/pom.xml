@@ -16,7 +16,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>web services</finalName>
+        <finalName>soap-example</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -42,6 +42,7 @@
                 </executions>
                 <configuration>
                     <sei>com.fiuba.arqsoft.soap.services.ws.StudentsWS</sei>
+                    <sei>com.fiuba.arqsoft.soap.services.ws.CoursesWS</sei>
                     <genWsdl>true</genWsdl>
                     <keep>true</keep>
                     <resourceDestDir>${basedir}/src/main/webapp/WEB-INF/wsdl</resourceDestDir>

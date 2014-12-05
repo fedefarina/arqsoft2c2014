@@ -8,9 +8,9 @@ import java.util.Collection;
 import java.util.Map;
 
 @org.springframework.stereotype.Repository
-public class StudentsDao {
+public class StudentsDAO {
 
-    private static final Logger LOG = LoggerFactory.getLogger(StudentsDao.class);
+    private static final Logger LOG = LoggerFactory.getLogger(StudentsDAO.class);
 
     public Student getById(String studentID) {
         LOG.trace("Get student with ID {}", studentID);

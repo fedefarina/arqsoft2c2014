@@ -50,6 +50,7 @@ public class Repository {
         students.put(rosaura.getStudentID(), rosaura);
         students.put(analia.getStudentID(), analia);
         students.put(lucia.getStudentID(), lucia);
+        students.put(emiliano.getStudentID(), emiliano);
 
 
         List<Student> students = new ArrayList<>();

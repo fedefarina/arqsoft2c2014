@@ -18,14 +18,13 @@ public class Student {
 
     List<Subject> subject;
 
+    public Student() {
+    }
 
     public Student(String anID, String aName, String aLastName) {
         studentID = anID;
         name = aName;
         lastName = aLastName;
-    }
-
-    public Student() {
     }
 
     public String getStudentID() {

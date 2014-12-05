@@ -8,7 +8,7 @@
     </listener>
 
     <servlet>
-        <servlet-name>StudentsWS</servlet-name>
+        <servlet-name>students</servlet-name>
         <servlet-class>
             com.sun.xml.ws.transport.http.servlet.WSServlet
         </servlet-class>
@@ -16,8 +16,21 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>StudentsWS</servlet-name>
-        <url-pattern>/StudentsWS</url-pattern>
+        <servlet-name>students</servlet-name>
+        <url-pattern>/students</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>courses</servlet-name>
+        <servlet-class>
+            com.sun.xml.ws.transport.http.servlet.WSServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>courses</servlet-name>
+        <url-pattern>/courses</url-pattern>
     </servlet-mapping>
 
     <mime-mapping>

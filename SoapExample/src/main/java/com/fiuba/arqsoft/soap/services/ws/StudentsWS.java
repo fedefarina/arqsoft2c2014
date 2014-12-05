@@ -1,6 +1,7 @@
 package com.fiuba.arqsoft.soap.services.ws;
 
 import com.fiuba.arqsoft.soap.dao.Repository;
+import com.fiuba.arqsoft.soap.dao.StudentsDAO;
 import com.fiuba.arqsoft.soap.domain.Student;
 import com.fiuba.arqsoft.soap.exceptions.StudentAlreadyExistException;
 import com.fiuba.arqsoft.soap.exceptions.StudentNotFoundException;
@@ -9,7 +10,6 @@ import com.fiuba.arqsoft.soap.services.StudentsManagement;
 import javax.jws.WebService;
 import javax.xml.ws.BindingType;
 import java.util.Collection;
-import java.util.Map;
 
 /**
  * Created by Fede on 11/8/14.
@@ -17,18 +17,19 @@ import java.util.Map;
 
 
 @WebService(endpointInterface = "com.fiuba.arqsoft.soap.services.StudentsManagement",
-        serviceName = "StudentsWS", targetNamespace = "http://com.aam.jaxws.server/")
+        serviceName = "students", targetNamespace = "http://com.aam.jaxws.server/")
 @BindingType(value = "http://java.sun.com/xml/ns/jaxws/2003/05/soap/bindings/HTTP/")
 public class StudentsWS implements StudentsManagement {
 
-    Map<String, Student> students = Repository.getAllStudents();
+    StudentsDAO studentsDAO = new StudentsDAO();
 
     static {
         System.setProperty("com.sun.xml.ws.fault.SOAPFaultBuilder.disableCaptureStackTrace", "false");
+        Repository.initRepository();
     }
 
     public Student findStudentByID(String id) throws StudentNotFoundException {
-        Student student = students.get(id);
+        Student student = studentsDAO.getById(id);
         if (student != null)
             return student;
         throw new StudentNotFoundException();
@@ -36,26 +37,26 @@ public class StudentsWS implements StudentsManagement {
 
 
     public Student removeStudentByID(String id) throws StudentNotFoundException {
-        Student student = students.get(id);
+        Student student = studentsDAO.getById(id);
         if (student != null) {
-            students.remove(id);
+            studentsDAO.delete(id);
             return student;
         }
         throw new StudentNotFoundException();
     }
 
     public Student addStudent(String id, String firstName, String lastName) throws StudentAlreadyExistException {
-        Student student = students.get(id);
+        Student student = studentsDAO.getById(id);
         if (student != null) {
             throw new StudentAlreadyExistException();
         }
 
         student = new Student(id, firstName, lastName);
-        students.put(id, student);
+        studentsDAO.addStudent(student);
         return student;
     }
 
     public Collection<Student> getAllStudents() {
-        return students.values();
+        return studentsDAO.getAll();
     }
 }

@@ -2,8 +2,13 @@
 <endpoints version="2.0"
            xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime">
 
+    <endpoint implementation="com.fiuba.arqsoft.soap.services.ws.CoursesWS"
+              name="courses"
+              url-pattern="/courses"/>
+
+
     <endpoint implementation="com.fiuba.arqsoft.soap.services.ws.StudentsWS"
-              name="StudentsWS"
-              url-pattern="/StudentsWS"/>
+              name="students"
+              url-pattern="/students"/>
 
 </endpoints>

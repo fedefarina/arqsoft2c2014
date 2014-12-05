@@ -9,6 +9,16 @@ public class Subject {
     private String subjectCode;
     private String name;
 
+    public Subject() {
+
+    }
+
+    public Subject(String aSubjectCode,
+                   String aName) {
+        subjectCode = aSubjectCode;
+        name = aName;
+    }
+
     public String getSubjectCode() {
         return subjectCode;
     }

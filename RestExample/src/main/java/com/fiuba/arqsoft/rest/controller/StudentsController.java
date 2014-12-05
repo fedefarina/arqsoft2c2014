@@ -1,6 +1,6 @@
 package com.fiuba.arqsoft.rest.controller;
 
-import com.fiuba.arqsoft.rest.dao.StudentsDao;
+import com.fiuba.arqsoft.rest.dao.StudentsDAO;
 import com.fiuba.arqsoft.rest.model.Student;
 import com.fiuba.arqsoft.rest.model.Students;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +16,17 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @Controller
 public class StudentsController {
 
-    private StudentsDao studentsDao;
+    private StudentsDAO studentsDAO;
 
     @Autowired
-    public StudentsController(StudentsDao studentsDao) {
-        this.studentsDao = studentsDao;
+    public StudentsController(StudentsDAO studentsDAO) {
+        this.studentsDAO = studentsDAO;
     }
 
     @RequestMapping(value = "/students/", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<Students> getAllStudents() {
-        Students students = new Students(studentsDao.getAll());
+        Students students = new Students(studentsDAO.getAll());
         for (Student student : students.getStudents()) {
             String studentID = student.getStudentID();
             student.removeLinks();
@@ -39,7 +39,7 @@ public class StudentsController {
     @RequestMapping(value = "/students/{studentID}", method = RequestMethod.GET)
     @ResponseBody
     public HttpEntity<Student> getByID(@PathVariable("studentID") String studentID) {
-        Student student = studentsDao.getById(studentID);
+        Student student = studentsDAO.getById(studentID);
         student.removeLinks();
         student.add(linkTo(methodOn(StudentsController.class).getByID(studentID)).withSelfRel());
         return new ResponseEntity<>(student, HttpStatus.OK);
@@ -48,7 +48,7 @@ public class StudentsController {
     @RequestMapping(value = "/students/{studentID}", method = RequestMethod.DELETE)
     @ResponseBody
     public HttpEntity<Student> deleteByID(@PathVariable("studentID") String studentID) {
-        Student student = studentsDao.delete(studentID);
+        Student student = studentsDAO.delete(studentID);
         student.removeLinks();
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
@@ -56,9 +56,9 @@ public class StudentsController {
     @RequestMapping(value = "/students/", method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
     public HttpEntity<Student> addStudent(@RequestBody Student student) throws Exception {
-        if (studentsDao.getById(student.getStudentID()) != null)
+        if (studentsDAO.getById(student.getStudentID()) != null)
             throw new Exception("Duplicate ID");
-        studentsDao.addStudent(student);
+        studentsDAO.addStudent(student);
         student.removeLinks();
         student.add(linkTo(methodOn(StudentsController.class).getByID(student.getStudentID())).withSelfRel());
         return new ResponseEntity<>(student, HttpStatus.OK);

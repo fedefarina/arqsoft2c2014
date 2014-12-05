@@ -4,18 +4,6 @@
   <import namespace="http://services.soap.arqsoft.fiuba.com/" location="StudentsWSPortType.wsdl"/>
   <binding name="StudentsWSPortBinding" type="ns1:StudentsWS" xmlns:ns1="http://services.soap.arqsoft.fiuba.com/">
     <soap12:binding transport="http://www.w3.org/2003/05/soap/bindings/HTTP/" style="document"/>
-    <operation name="addStudent">
-      <soap12:operation soapAction=""/>
-      <input>
-        <soap12:body use="literal"/>
-      </input>
-      <output>
-        <soap12:body use="literal"/>
-      </output>
-      <fault name="StudentAlreadyExistException">
-        <soap12:fault name="StudentAlreadyExistException" use="literal"/>
-      </fault>
-    </operation>
     <operation name="findStudentByID">
       <soap12:operation soapAction=""/>
       <input>
@@ -38,6 +26,18 @@
       </output>
       <fault name="StudentNotFoundException">
         <soap12:fault name="StudentNotFoundException" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="addStudent">
+      <soap12:operation soapAction=""/>
+      <input>
+        <soap12:body use="literal"/>
+      </input>
+      <output>
+        <soap12:body use="literal"/>
+      </output>
+      <fault name="StudentAlreadyExistException">
+        <soap12:fault name="StudentAlreadyExistException" use="literal"/>
       </fault>
     </operation>
     <operation name="getAllStudents">

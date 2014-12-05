@@ -13,7 +13,7 @@ import javax.jws.soap.SOAPBinding;
  * Created by Fede on 11/8/14.
  */
 
-@WebService(name = "StudentsWS")
+@WebService(name = "students")
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT, use = SOAPBinding.Use.LITERAL)
 public interface StudentsManagement {
 
