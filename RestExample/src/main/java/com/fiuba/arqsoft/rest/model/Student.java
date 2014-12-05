@@ -50,6 +50,11 @@ public class Student extends ResourceSupport {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        return studentID.equals(((Student) obj).getStudentID());
+    }
+
+    @Override
     public String toString() {
         return "Student{" +
                 "id=" + studentID +

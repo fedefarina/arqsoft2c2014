@@ -47,9 +47,12 @@ public class StudentsController {
 
     @RequestMapping(value = "/students/{studentID}", method = RequestMethod.DELETE)
     @ResponseBody
-    public HttpEntity<Student> deleteByID(@PathVariable("studentID") String studentID) {
+    public HttpEntity<Student> deleteByID(@PathVariable("studentID") String studentID) throws Exception {
         Student student = studentsDAO.delete(studentID);
+        if (student == null)
+            throw new Exception("Student not found");
         student.removeLinks();
+        student.add(linkTo(methodOn(StudentsController.class).getByID(studentID)).withSelfRel());
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
