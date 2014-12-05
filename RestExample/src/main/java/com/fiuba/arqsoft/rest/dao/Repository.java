@@ -50,7 +50,6 @@ public class Repository {
         students.put(rosaura.getStudentID(), rosaura);
         students.put(analia.getStudentID(), analia);
         students.put(lucia.getStudentID(), lucia);
-        
 
 
         List<Student> students = new ArrayList<>();
@@ -64,20 +63,19 @@ public class Repository {
         students2.add(ezequiel);
         students2.add(analia);
         students2.add(lucia);
-        
+
         List<Student> students3 = new ArrayList<>();
         students3.add(guillermo);
         students3.add(nicolas);
         students3.add(analia);
         students3.add(rosaura);
-        
+
         List<Student> students4 = new ArrayList<>();
         students4.add(ezequiel);
         students4.add(nicolas);
         students4.add(lucia);
         students4.add(analia);
-        
-        
+
 
         //Courses
         Course firstCourse = new Course("1", "7531", "2014", "2", students);
@@ -92,11 +90,16 @@ public class Repository {
         courses.put(thirdCourse.getCourseID(), thirdCourse);
         courses.put(fourthCourse.getCourseID(), fourthCourse);
         courses.put(fivethCourse.getCourseID(), fivethCourse);
-        
+
         subjects.put(subject1.getSubjectCode(), subject1);
         subjects.put(subject2.getSubjectCode(), subject2);
         subjects.put(subject3.getSubjectCode(), subject3);
         subjects.put(subject4.getSubjectCode(), subject4);
+        subjects.put(subject5.getSubjectCode(), subject5);
+        subjects.put(subject6.getSubjectCode(), subject6);
+        subjects.put(subject7.getSubjectCode(), subject7);
+        subjects.put(subject8.getSubjectCode(), subject8);
+        subjects.put(subject9.getSubjectCode(), subject9);
     }
 
 
