@@ -43,6 +43,7 @@
                 <configuration>
                     <sei>com.fiuba.arqsoft.soap.services.ws.StudentsWS</sei>
                     <sei>com.fiuba.arqsoft.soap.services.ws.CoursesWS</sei>
+                    <sei>com.fiuba.arqsoft.soap.services.ws.SubjectsWS</sei>
                     <genWsdl>true</genWsdl>
                     <keep>true</keep>
                     <resourceDestDir>${basedir}/src/main/webapp/WEB-INF/wsdl</resourceDestDir>

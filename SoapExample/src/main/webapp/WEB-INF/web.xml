@@ -33,6 +33,19 @@
         <url-pattern>/courses</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>subjects</servlet-name>
+        <servlet-class>
+            com.sun.xml.ws.transport.http.servlet.WSServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>subjects</servlet-name>
+        <url-pattern>/subjects</url-pattern>
+    </servlet-mapping>
+
     <mime-mapping>
         <extension>txt</extension>
         <mime-type>text/xml</mime-type>

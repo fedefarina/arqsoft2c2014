@@ -12,7 +12,6 @@ import javax.jws.soap.SOAPBinding;
 @SOAPBinding(style = SOAPBinding.Style.DOCUMENT, use = SOAPBinding.Use.LITERAL)
 public interface CoursesManagement {
     public java.util.Collection<Course> getAllCourses();
-
 }
 
 

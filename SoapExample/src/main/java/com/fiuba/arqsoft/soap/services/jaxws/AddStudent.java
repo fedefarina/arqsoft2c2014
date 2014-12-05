@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "addStudent", namespace = "http://services.soap.arqsoft.fiuba.com/")
+@XmlRootElement(name = "addSubject", namespace = "http://services.soap.arqsoft.fiuba.com/")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "addStudent", namespace = "http://services.soap.arqsoft.fiuba.com/", propOrder = {
     "studentID",

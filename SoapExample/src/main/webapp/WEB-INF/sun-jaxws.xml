@@ -6,9 +6,12 @@
               name="courses"
               url-pattern="/courses"/>
 
-
     <endpoint implementation="com.fiuba.arqsoft.soap.services.ws.StudentsWS"
               name="students"
               url-pattern="/students"/>
+
+    <endpoint implementation="com.fiuba.arqsoft.soap.services.ws.SubjectsWS"
+              name="subjects"
+              url-pattern="/subjects"/>
 
 </endpoints>
