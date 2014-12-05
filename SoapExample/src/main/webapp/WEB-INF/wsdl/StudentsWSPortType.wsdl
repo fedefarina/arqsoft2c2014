@@ -6,6 +6,15 @@
       <xsd:import namespace="http://services.soap.arqsoft.fiuba.com/" schemaLocation="StudentsWSPortType_schema1.xsd"/>
     </xsd:schema>
   </types>
+  <message name="addStudent">
+    <part name="parameters" element="tns:addStudent"/>
+  </message>
+  <message name="addStudentResponse">
+    <part name="parameters" element="tns:addStudentResponse"/>
+  </message>
+  <message name="StudentAlreadyExistException">
+    <part name="fault" element="tns:StudentAlreadyExistException"/>
+  </message>
   <message name="findStudentByID">
     <part name="parameters" element="tns:findStudentByID"/>
   </message>
@@ -21,15 +30,6 @@
   <message name="removeStudentByIDResponse">
     <part name="parameters" element="tns:removeStudentByIDResponse"/>
   </message>
-  <message name="addStudent">
-    <part name="parameters" element="tns:addStudent"/>
-  </message>
-  <message name="addStudentResponse">
-    <part name="parameters" element="tns:addStudentResponse"/>
-  </message>
-  <message name="StudentAlreadyExistException">
-    <part name="fault" element="tns:StudentAlreadyExistException"/>
-  </message>
   <message name="getAllStudents">
     <part name="parameters" element="tns:getAllStudents"/>
   </message>
@@ -37,6 +37,11 @@
     <part name="parameters" element="tns:getAllStudentsResponse"/>
   </message>
   <portType name="StudentsWS">
+    <operation name="addStudent">
+      <input message="tns:addStudent"/>
+      <output message="tns:addStudentResponse"/>
+      <fault message="tns:StudentAlreadyExistException" name="StudentAlreadyExistException"/>
+    </operation>
     <operation name="findStudentByID">
       <input message="tns:findStudentByID"/>
       <output message="tns:findStudentByIDResponse"/>
@@ -46,11 +51,6 @@
       <input message="tns:removeStudentByID"/>
       <output message="tns:removeStudentByIDResponse"/>
       <fault message="tns:StudentNotFoundException" name="StudentNotFoundException"/>
-    </operation>
-    <operation name="addStudent">
-      <input message="tns:addStudent"/>
-      <output message="tns:addStudentResponse"/>
-      <fault message="tns:StudentAlreadyExistException" name="StudentAlreadyExistException"/>
     </operation>
     <operation name="getAllStudents">
       <input message="tns:getAllStudents"/>
