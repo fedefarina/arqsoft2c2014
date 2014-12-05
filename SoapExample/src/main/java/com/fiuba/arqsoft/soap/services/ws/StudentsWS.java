@@ -38,18 +38,15 @@ public class StudentsWS implements StudentsManagement {
 
     public Student removeStudentByID(String id) throws StudentNotFoundException {
         Student student = studentsDAO.getById(id);
-        if (student != null) {
-            studentsDAO.delete(id);
-            return student;
-        }
-        throw new StudentNotFoundException();
+        if (student == null)
+            throw new StudentNotFoundException();
+        return studentsDAO.delete(id);
     }
 
     public Student addStudent(String id, String firstName, String lastName) throws StudentAlreadyExistException {
         Student student = studentsDAO.getById(id);
-        if (student != null) {
+        if (student != null)
             throw new StudentAlreadyExistException();
-        }
 
         student = new Student(id, firstName, lastName);
         studentsDAO.addStudent(student);

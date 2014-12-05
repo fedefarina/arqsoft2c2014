@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://services.soap.arqsoft.fiuba.com/" xmlns:tns="http://services.soap.arqsoft.fiuba.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="Exception" type="tns:Exception"/>
+
+  <xs:element name="addSubject" type="tns:addSubject"/>
+
+  <xs:element name="addSubjectResponse" type="tns:addSubjectResponse"/>
+
+  <xs:element name="getAllSubjects" type="tns:getAllSubjects"/>
+
+  <xs:element name="getAllSubjectsResponse" type="tns:getAllSubjectsResponse"/>
+
+  <xs:complexType name="getAllSubjects">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getAllSubjectsResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:subject" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="subject">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="subjectCode" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="addSubject">
+    <xs:sequence>
+      <xs:element name="subjectCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="addSubjectResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:subject" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+
