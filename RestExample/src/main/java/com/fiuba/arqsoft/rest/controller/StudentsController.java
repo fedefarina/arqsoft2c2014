@@ -55,7 +55,9 @@ public class StudentsController {
 
     @RequestMapping(value = "/students/", method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
-    public HttpEntity<Student> addStudent(@RequestBody Student student) {
+    public HttpEntity<Student> addStudent(@RequestBody Student student) throws Exception {
+        if (studentsDao.getById(student.getStudentID()) != null)
+            throw new Exception("Duplicate ID");
         studentsDao.addStudent(student);
         student.removeLinks();
         student.add(linkTo(methodOn(StudentsController.class).getByID(student.getStudentID())).withSelfRel());

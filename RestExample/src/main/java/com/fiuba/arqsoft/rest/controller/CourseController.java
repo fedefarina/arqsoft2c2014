@@ -10,10 +10,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -76,6 +73,18 @@ public class CourseController {
         students.add(linkTo(methodOn(CourseController.class).getStudentsForCourse(courseID)).withSelfRel());
         students.add(linkTo(methodOn(CourseController.class).getByID(courseID)).withRel("course"));
         return new ResponseEntity<>(students, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/courses", method = RequestMethod.POST, consumes = "application/json")
+    @ResponseBody
+    public HttpEntity<Course> addCourse(@RequestBody Course course) throws Exception {
+        if (courseDAO.getById(course.getCourseID()) != null)
+            throw new Exception("Duplicate ID");
+        courseDAO.addCourse(course);
+        course.removeLinks();
+        course.add(linkTo(methodOn(CourseController.class).getByID(course.getCourseID())).withSelfRel());
+        course.add(linkTo(methodOn(SubjectController.class).getByID(course.getSubjectID())).withRel("subject"));
+        return new ResponseEntity<>(course, HttpStatus.OK);
     }
 
 

@@ -24,7 +24,7 @@ public class Course extends ResourceSupport {
                   @JsonProperty("subjectID") String aSubjectID,
                   @JsonProperty("year") String aYear,
                   @JsonProperty("semester") String aSemester,
-                  @JsonProperty() List<Student> theStudents) {
+                  @JsonProperty("students") List<Student> theStudents) {
         courseID = aCourseID;
         subjectID = aSubjectID;
         year = aYear;

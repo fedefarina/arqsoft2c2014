@@ -24,4 +24,10 @@ public class CourseDAO {
         LOG.trace("Get course by ID {}", courseID);
         return Repository.getAllCourses().get(courseID);
     }
+
+    public Course addCourse(Course course) {
+        LOG.trace("Add course: " + course);
+        Repository.getAllCourses().put(course.getCourseID(), course);
+        return course;
+    }
 }

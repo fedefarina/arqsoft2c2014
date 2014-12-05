@@ -58,11 +58,12 @@ public class SubjectController {
 
     @RequestMapping(value = "/subjects", method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
-    public HttpEntity<Subject> add(@RequestBody Subject aSubject) {
+    public HttpEntity<Subject> add(@RequestBody Subject aSubject) throws Exception {
+        if (subjectDAO.getById(aSubject.getSubjectCode()) != null)
+            throw new Exception("Duplicate ID");
+
         Subject subject = subjectDAO.addSubject(aSubject);
         subject.add(linkTo(methodOn(SubjectController.class).getByID(subject.getSubjectCode())).withSelfRel());
         return new ResponseEntity<>(subject, HttpStatus.OK);
     }
-
-
 }
